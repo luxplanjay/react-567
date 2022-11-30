@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
 export const List = styled.ul`
-  padding: 0;
-  margin: 0;
   list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
+  gap: 8px;
 `;
