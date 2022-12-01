@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
 export const CardWrapper = styled.div`
-  border: 2px solid #2a2a2a;
+  border: 1px solid #2a2a2a;
   padding: 8px;
-  width: 140px;
-  border-radius: 8px;
+  border-radius: 4px;
   cursor: pointer;
 
   :hover {
@@ -18,6 +17,7 @@ export const Image = styled.img`
 `;
 
 export const Label = styled.p`
+  margin-top: 8px;
   margin-bottom: 0;
   color: #2a2a2a;
 `;

@@ -1,25 +1,31 @@
 [
   {
+    "id": "1",
     "img": "https://tlgrm.eu/_/stickers/e3a/876/e3a87689-707f-3495-b94a-8ee96e2538e5/256/32.webp",
     "label": "Coding"
   },
   {
+    "id": "2",
     "img": "https://tlgrm.eu/_/stickers/e3a/876/e3a87689-707f-3495-b94a-8ee96e2538e5/256/41.webp",
     "label": "Chilling"
   },
   {
+    "id": "3",
     "img": "https://tlgrm.eu/_/stickers/e3a/876/e3a87689-707f-3495-b94a-8ee96e2538e5/256/61.webp",
     "label": "Astronaut"
   },
   {
+    "id": "4",
     "img": "https://tlgrm.eu/_/stickers/e3a/876/e3a87689-707f-3495-b94a-8ee96e2538e5/256/72.webp",
     "label": "Doing his thing"
   },
   {
+    "id": "5",
     "img": "https://tlgrm.eu/_/stickers/e3a/876/e3a87689-707f-3495-b94a-8ee96e2538e5/256/86.webp",
     "label": "Napping"
   },
   {
+    "id": "6",
     "img": "https://tlgrm.eu/_/stickers/e3a/876/e3a87689-707f-3495-b94a-8ee96e2538e5/256/84.webp",
     "label": "In the cold"
   }
