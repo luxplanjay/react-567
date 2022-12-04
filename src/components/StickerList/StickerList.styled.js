@@ -5,6 +5,6 @@ export const List = styled.ul`
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, auto));
+  grid-template-columns: repeat(auto-fill, minmax(180px, auto));
   gap: 8px;
 `;
