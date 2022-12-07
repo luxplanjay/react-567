@@ -5,6 +5,7 @@ export const StickerForm = ({ onSubmit }) => {
     event.preventDefault();
     const { img, label } = event.target.elements;
     onSubmit(img.value, label.value);
+    event.target.reset();
   };
 
   return (

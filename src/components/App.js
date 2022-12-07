@@ -10,8 +10,27 @@ export class App extends Component {
   };
 
   state = {
-    stickers: this.props.initialStickers,
+    stickers: [],
   };
+
+  componentDidMount() {
+    const savedStickers = localStorage.getItem('stickers');
+    if (savedStickers !== null) {
+      this.setState({
+        stickers: JSON.parse(savedStickers),
+      });
+    } else {
+      this.setState({
+        stickers: this.props.initialStickers,
+      });
+    }
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (prevState.stickers !== this.state.stickers) {
+      localStorage.setItem('stickers', JSON.stringify(this.state.stickers));
+    }
+  }
 
   addSticker = (img, label) => {
     this.setState(prevState => ({
