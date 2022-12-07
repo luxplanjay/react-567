@@ -19,13 +19,21 @@ export class App extends Component {
     }));
   };
 
+  deleteSticker = stickerId => {
+    this.setState(prevState => ({
+      stickers: prevState.stickers.filter(sticker => sticker.id !== stickerId),
+    }));
+  };
+
   render() {
     const { stickers } = this.state;
 
     return (
       <Layout>
         <StickerForm onSubmit={this.addSticker} />
-        {stickers.length > 0 && <StickerList items={stickers} />}
+        {stickers.length > 0 && (
+          <StickerList items={stickers} onDelete={this.deleteSticker} />
+        )}
       </Layout>
     );
   }

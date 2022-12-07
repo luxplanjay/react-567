@@ -18,7 +18,7 @@ export const ImageModal = ({ isOpen, img, onClose }) => {
     <Modal isOpen={isOpen} onRequestClose={onClose} style={modalStyles}>
       <button onClick={onClose}>Close</button>
       <div>Image modal</div>
-      <img src={img} alt="свинюшка" />
+      <img src={img} alt="A pig" />
     </Modal>
   );
 };

@@ -1,36 +1,32 @@
-import { ImageModal } from 'components/ImageModal/ImageModal';
 import { Component } from 'react';
-import Modal from 'react-modal';
-import { Actions, CardWrapper, Image, Label } from './Sticker.styled';
-
-const modalStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
-};
-
-Modal.setAppElement('#root');
+import { BsFillTrashFill, BsZoomIn } from 'react-icons/bs';
+import { ImageModal } from 'components/ImageModal/ImageModal';
+import {
+  CardWrapper,
+  Image,
+  Label,
+  ActionButton,
+  Actions,
+} from './Sticker.styled';
 
 export class Sticker extends Component {
   state = {
-    openedModal: null,
+    isImageModalOpen: false,
   };
 
-  openModal = type => {
-    this.setState({ openedModal: type });
+  toggleImageModal = () => {
+    this.setState(prevState => ({
+      isImageModalOpen: !prevState.isImageModalOpen,
+    }));
   };
 
-  closeModal = () => {
-    this.setState({ openedModal: null });
+  handleDelete = () => {
+    const { sticker, onDelete } = this.props;
+    onDelete(sticker.id);
   };
 
   render() {
-    const { openedModal } = this.state;
+    const { isImageModalOpen } = this.state;
     const {
       sticker: { img, label },
     } = this.props;
@@ -38,51 +34,23 @@ export class Sticker extends Component {
     return (
       <>
         <CardWrapper>
-          <Image
-            src={img}
-            alt={label}
-            onClick={() => this.openModal('image')}
-          />
+          <Image src={img} alt={label} />
           <Label>{label}</Label>
           <Actions>
-            <button onClick={() => this.openModal('edit')}>Edit</button>
-            <button onClick={() => this.openModal('fav')}>Fav</button>
-            <button onClick={() => this.openModal('delete')}>Delete</button>
+            <ActionButton aria-label="zoom" onClick={this.toggleImageModal}>
+              <BsZoomIn />
+            </ActionButton>
+            <ActionButton aria-label="delete" onClick={this.handleDelete}>
+              <BsFillTrashFill />
+            </ActionButton>
           </Actions>
         </CardWrapper>
 
         <ImageModal
-          isOpen={openedModal === 'image'}
+          isOpen={isImageModalOpen}
           img={img}
-          onClose={this.closeModal}
+          onClose={this.toggleImageModal}
         />
-
-        <Modal
-          isOpen={openedModal === 'edit'}
-          onRequestClose={this.closeModal}
-          style={modalStyles}
-        >
-          <button onClick={this.closeModal}>Close</button>
-          <div>Edit modal</div>
-        </Modal>
-
-        <Modal
-          isOpen={openedModal === 'fav'}
-          onRequestClose={this.closeModal}
-          style={modalStyles}
-        >
-          <button onClick={this.closeModal}>Close</button>
-          <div>Fav modal</div>
-        </Modal>
-
-        <Modal
-          isOpen={openedModal === 'delete'}
-          onRequestClose={this.closeModal}
-          style={modalStyles}
-        >
-          <button onClick={this.closeModal}>Close</button>
-          <div>Delete modal</div>
-        </Modal>
       </>
     );
   }
