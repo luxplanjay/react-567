@@ -1,58 +1,40 @@
+import { fetchDogByBreed } from 'api';
 import { Component } from 'react';
-import { nanoid } from 'nanoid';
+import { BreedSelect } from './BreedSelect';
+import { Dog } from './Dog';
 import { Layout } from './Layout';
-import { StickerForm } from './StickerForm/StickerForm';
-import { StickerList } from './StickerList/StickerList';
+import { DogSkeleton } from './DogSkeleton';
 
 export class App extends Component {
-  static defaultProps = {
-    initialStickers: [],
-  };
-
   state = {
-    stickers: [],
+    dog: null,
+    isLoading: false,
+    error: null,
   };
 
-  componentDidMount() {
-    const savedStickers = localStorage.getItem('stickers');
-    if (savedStickers !== null) {
+  selectBreed = async breedId => {
+    try {
+      this.setState({ isLoading: true, error: null });
+      const dog = await fetchDogByBreed(breedId);
+      this.setState({ dog });
+    } catch {
       this.setState({
-        stickers: JSON.parse(savedStickers),
+        error:
+          'У нас не получилось взять данные о собачке, попробуйте еще разочек 😇',
       });
-    } else {
-      this.setState({
-        stickers: this.props.initialStickers,
-      });
+    } finally {
+      this.setState({ isLoading: false });
     }
-  }
-
-  componentDidUpdate(_, prevState) {
-    if (prevState.stickers !== this.state.stickers) {
-      localStorage.setItem('stickers', JSON.stringify(this.state.stickers));
-    }
-  }
-
-  addSticker = (img, label) => {
-    this.setState(prevState => ({
-      stickers: [...prevState.stickers, { id: nanoid(), img, label }],
-    }));
-  };
-
-  deleteSticker = stickerId => {
-    this.setState(prevState => ({
-      stickers: prevState.stickers.filter(sticker => sticker.id !== stickerId),
-    }));
   };
 
   render() {
-    const { stickers } = this.state;
-
+    const { error, dog, isLoading } = this.state;
     return (
       <Layout>
-        <StickerForm onSubmit={this.addSticker} />
-        {stickers.length > 0 && (
-          <StickerList items={stickers} onDelete={this.deleteSticker} />
-        )}
+        <BreedSelect onSelect={this.selectBreed} />
+        {dog && !isLoading && <Dog dog={dog} />}
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {isLoading && <DogSkeleton />}
       </Layout>
     );
   }
