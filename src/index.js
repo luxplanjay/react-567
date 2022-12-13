@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from 'styled-components';
-import { App } from 'components/App';
+// import { App } from 'components/App';
+import { App } from 'components/HTTPReqAbort';
 import { GlobalStyle } from 'components/GlobalStyle';
 import { theme } from './theme';
 
