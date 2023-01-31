@@ -12,6 +12,7 @@
 - https://react-hook-form.com/
 - https://storybook.js.org/
 - https://tailwindcss.com/
+- https://react.i18next.com/
 
 ### Библиотеки компонент
 
